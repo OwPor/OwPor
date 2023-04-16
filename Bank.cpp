@@ -5,9 +5,6 @@
 using namespace std;
 
 bool loggedIn = false;
-string username, password;
-double balance;
-
 
 struct BankAccount {
     string username;
@@ -36,7 +33,7 @@ vector < BankAccount > readAccounts() {
     return accounts;
 }
 
-void writeAccounts(const vector<BankAccount>& accounts, double createBalance) {
+void writeAccounts(const vector<BankAccount>& accounts, double createBalance, string un) {
     ofstream outfile("accounts.txt");
 
     if (!outfile) {
@@ -50,8 +47,7 @@ void writeAccounts(const vector<BankAccount>& accounts, double createBalance) {
 
     outfile.close();
 
-    string user = username + ".txt"; // Error: 'username' is undefined
-    // Fixed: Changed 'username' to 'currentAccount.username' as it is the correct member variable.
+    string user = un + ".txt"; //
 
     ofstream edit;
     edit.open(user, ios::out);
@@ -93,6 +89,8 @@ int findAccountByUsername(const vector < BankAccount > & accounts,
 
 // Function to register a new account
 void registerAccount(vector < BankAccount > & accounts) {
+    string username, password;
+    double balance;
 
     cout << "Enter username: ";
     cin >> username;
@@ -113,7 +111,7 @@ void registerAccount(vector < BankAccount > & accounts) {
         balance
     };
     accounts.push_back(account);
-    writeAccounts(accounts, balance);
+    writeAccounts(accounts, balance, username);
 
     cout << "Account registered successfully!" << endl;
 }
@@ -154,7 +152,7 @@ void depositBalance(BankAccount & currentAccount) {
     cin >> amount;
 
     currentAccount.balance += amount;
-    writeAccounts(vector<BankAccount>{ currentAccount }, currentAccount.balance); // Fixed: Pass vector with single element instead of brace-enclosed initializer list
+    writeAccounts(vector<BankAccount>{ currentAccount }, currentAccount.balance, currentAccount.username); // Fixed: Pass vector with single element instead of brace-enclosed initializer list
 
     cout << "Balance deposited successfully!" << " Current balance: " << currentAccount.balance << endl;
 }
@@ -173,7 +171,7 @@ void withdrawBalance(BankAccount & currentAccount) {
     }
 
     currentAccount.balance -= amount;
-    writeAccounts(vector<BankAccount>{ currentAccount }, currentAccount.balance);
+    writeAccounts(vector<BankAccount>{ currentAccount }, currentAccount.balance, currentAccount.username);
 
     cout << "Balance withdrawn successfully!" << " Current balance: " << currentAccount.balance << endl;
 }
@@ -188,7 +186,12 @@ void transferBalance(vector<BankAccount>& accounts, BankAccount& currentAccount)
     int index = findAccountByUsername(accounts, username);
 
     if (index == -1) {
-        cout << "Recipient account not found" << endl;
+        cout << "Recipient account not found!" << endl;
+        return;
+    }
+
+    if (username == currentAccount.username) {
+        cout << "You can't transfer balance to your self!" << endl;
         return;
     }
 
@@ -204,7 +207,7 @@ void transferBalance(vector<BankAccount>& accounts, BankAccount& currentAccount)
 
     currentAccount.balance -= amount; // deduct transferred amount from current account
     accounts[index].balance += amount; // add transferred amount to recipient account
-    writeAccounts(accounts, currentAccount.balance);
+    writeAccounts(accounts, currentAccount.balance, currentAccount.username);
 
     cout << "Balance transferred successfully!" << endl;
     cout << "Your updated balance is: " << currentAccount.balance << endl;
@@ -217,7 +220,17 @@ void transferBalance(vector<BankAccount>& accounts, BankAccount& currentAccount)
 
 // Function to check the current account balance
 void checkBalance(const BankAccount & currentAccount) {
-    cout << "Current balance: " << currentAccount.balance << endl;
+    string user = currentAccount.username + ".txt";
+    string line;
+
+    cout << "Current balance: ";
+
+    ifstream check;
+    check.open(user);
+    while (getline(check, line))
+        cout << line << endl;
+
+    check.close();
 }
 
 // Function to log out of the current account
@@ -291,7 +304,7 @@ int main() {
                     logoutAccount(currentAccount);
                     break;
                 case 6:
-                    writeAccounts(accounts, currentAccount.balance);
+                    writeAccounts(accounts, currentAccount.balance, currentAccount.username);
                     return 0;
                 default:
                     cout << "Invalid choice" << endl;
