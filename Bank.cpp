@@ -6,24 +6,27 @@ using namespace std;
 
 bool loggedIn = false;
 
-struct BankAccount {
+struct BankAccount
+{
     string username;
     string password;
     double balance;
 };
 
-vector < BankAccount > readAccounts() {
-    vector < BankAccount > accounts;
-    ifstream inFile("accounts.txt");
+vector<BankAccount> readAccounts()
+{
+    vector<BankAccount> accounts;
+    ifstream inFile("accounts.txt", ios::in);
 
-    if (inFile) {
+    if (inFile)
+    {
         string username, password;
 
-        while (inFile >> username >> password) {
+        while (inFile >> username >> password)
+        {
             BankAccount account = {
                 username,
-                password
-            };
+                password};
             accounts.push_back(account);
         }
 
@@ -33,21 +36,24 @@ vector < BankAccount > readAccounts() {
     return accounts;
 }
 
-void writeAccounts(const vector<BankAccount>& accounts, double createBalance, string un) {
-    ofstream outfile("accounts.txt");
+void writeAccounts(const vector<BankAccount> &accounts, double createBalance, string un)
+{
+    ofstream outfile("accounts.txt", ios::out);
 
-    if (!outfile) {
+    if (!outfile)
+    {
         cerr << "Error: could not open file" << endl;
         exit(1);
     }
 
-    for (const auto& account : accounts) {
+    for (const auto &account : accounts)
+    {
         outfile << account.username << " " << account.password << endl;
     }
 
     outfile.close();
 
-    string user = un + ".txt"; //
+    string user = un + ".txt";
 
     ofstream edit;
     edit.open(user, ios::out);
@@ -55,13 +61,13 @@ void writeAccounts(const vector<BankAccount>& accounts, double createBalance, st
     edit.close();
 }
 
-
-void updateBalanceInFile(double newBalance, BankAccount & currentAccount) {
+void updateBalanceInFile(double newBalance, BankAccount &currentAccount)
+{
     string user = currentAccount.username + ".txt";
 
     ofstream edit;
     edit.open(user, ios::out);
-        edit << newBalance;
+    edit << newBalance;
     edit.close();
 }
 
@@ -71,15 +77,18 @@ void updateBalanceOthers(string username, double otherBalance)
 
     ofstream edit;
     edit.open(user, ios::out);
-        edit << otherBalance;
+    edit << otherBalance;
     edit.close();
 }
 
 // Function to find an account by username
-int findAccountByUsername(const vector < BankAccount > & accounts,
-    const string & username) {
-    for (size_t i = 0; i < accounts.size(); i++) {
-        if (accounts[i].username == username) {
+int findAccountByUsername(const vector<BankAccount> &accounts,
+                          const string &username)
+{
+    for (size_t i = 0; i < accounts.size(); i++)
+    {
+        if (accounts[i].username == username)
+        {
             return i;
         }
     }
@@ -88,14 +97,16 @@ int findAccountByUsername(const vector < BankAccount > & accounts,
 }
 
 // Function to register a new account
-void registerAccount(vector < BankAccount > & accounts) {
+void registerAccount(vector<BankAccount> &accounts)
+{
     string username, password;
     double balance;
 
     cout << "Enter username: ";
     cin >> username;
 
-    if (findAccountByUsername(accounts, username) != -1) {
+    if (findAccountByUsername(accounts, username) != -1)
+    {
         cout << "Username already exists" << endl;
         return;
     }
@@ -108,8 +119,7 @@ void registerAccount(vector < BankAccount > & accounts) {
     BankAccount account = {
         username,
         password,
-        balance
-    };
+        balance};
     accounts.push_back(account);
     writeAccounts(accounts, balance, username);
 
@@ -117,7 +127,8 @@ void registerAccount(vector < BankAccount > & accounts) {
 }
 
 // Function to log in to an existing account
-void loginAccount(vector < BankAccount > & accounts, BankAccount & currentAccount) {
+void loginAccount(vector<BankAccount> &accounts, BankAccount &currentAccount)
+{
     string username, password;
 
     cout << "Enter username: ";
@@ -125,7 +136,8 @@ void loginAccount(vector < BankAccount > & accounts, BankAccount & currentAccoun
 
     int index = findAccountByUsername(accounts, username);
 
-    if (index == -1) {
+    if (index == -1)
+    {
         cout << "Invalid username" << endl;
         return;
     }
@@ -133,51 +145,67 @@ void loginAccount(vector < BankAccount > & accounts, BankAccount & currentAccoun
     cout << "Enter password: ";
     cin >> password;
 
-    if (accounts[index].password != password) {
+    if (accounts[index].password != password)
+    {
         cout << "Incorrect password" << endl;
         return;
     }
 
     currentAccount = accounts[index];
-    system("CLS");
+
+    string line;
+    ifstream check;
+    check.open(currentAccount.username + ".txt", ios::in);
+    while (getline(check, line))
+        currentAccount.balance = stoi(line);
+    check.close();
+
+    system("cls");
     loggedIn = true;
     cout << "Logged in successfully!" << endl;
 }
 
 // Function to deposit money to the current account
-void depositBalance(BankAccount & currentAccount) {
+void depositBalance(BankAccount &currentAccount)
+{
     double amount;
 
     cout << "Enter amount to deposit: ";
     cin >> amount;
 
     currentAccount.balance += amount;
-    writeAccounts(vector<BankAccount>{ currentAccount }, currentAccount.balance, currentAccount.username); // Fixed: Pass vector with single element instead of brace-enclosed initializer list
 
-    cout << "Balance deposited successfully!" << " Current balance: " << currentAccount.balance << endl;
+    updateBalanceInFile(currentAccount.balance, currentAccount);
+
+    cout << "Balance deposited successfully!"
+         << " Current balance: " << currentAccount.balance << endl;
 }
 
-
 // Function to withdraw money from the current account
-void withdrawBalance(BankAccount & currentAccount) {
+void withdrawBalance(BankAccount &currentAccount)
+{
     double amount;
 
     cout << "Enter amount to withdraw: ";
     cin >> amount;
 
-    if (amount > currentAccount.balance) {
+    if (amount > currentAccount.balance)
+    {
         cout << "Insufficient balance" << endl;
         return;
     }
 
     currentAccount.balance -= amount;
-    writeAccounts(vector<BankAccount>{ currentAccount }, currentAccount.balance, currentAccount.username);
 
-    cout << "Balance withdrawn successfully!" << " Current balance: " << currentAccount.balance << endl;
+    updateBalanceInFile(currentAccount.balance, currentAccount);
+
+    cout << "Balance withdrawn successfully!"
+         << " Current balance: " << currentAccount.balance << endl;
 }
 
 // Function to transfer money from the current account to another account
-void transferBalance(vector<BankAccount>& accounts, BankAccount& currentAccount) {
+void transferBalance(vector<BankAccount> &accounts, BankAccount &currentAccount)
+{
     string username;
 
     cout << "Enter recipient username: ";
@@ -185,12 +213,14 @@ void transferBalance(vector<BankAccount>& accounts, BankAccount& currentAccount)
 
     int index = findAccountByUsername(accounts, username);
 
-    if (index == -1) {
+    if (index == -1)
+    {
         cout << "Recipient account not found!" << endl;
         return;
     }
 
-    if (username == currentAccount.username) {
+    if (username == currentAccount.username)
+    {
         cout << "You can't transfer balance to your self!" << endl;
         return;
     }
@@ -200,14 +230,29 @@ void transferBalance(vector<BankAccount>& accounts, BankAccount& currentAccount)
     cout << "Enter amount to transfer: ";
     cin >> amount;
 
-    if (amount > currentAccount.balance) {
+    string line;
+    ifstream check;
+    check.open(currentAccount.username + ".txt", ios::in);
+    while (getline(check, line))
+        currentAccount.balance = stoi(line);
+    check.close();
+
+    if (amount > currentAccount.balance)
+    {
         cout << "Insufficient balance" << endl;
         return;
     }
 
     currentAccount.balance -= amount; // deduct transferred amount from current account
+
+    ifstream checkOthers;
+    checkOthers.open(username + ".txt", ios::in);
+    while (getline(checkOthers, line))
+        accounts[index].balance = stoi(line);
+
+    checkOthers.close();
+
     accounts[index].balance += amount; // add transferred amount to recipient account
-    writeAccounts(accounts, currentAccount.balance, currentAccount.username);
 
     cout << "Balance transferred successfully!" << endl;
     cout << "Your updated balance is: " << currentAccount.balance << endl;
@@ -217,43 +262,44 @@ void transferBalance(vector<BankAccount>& accounts, BankAccount& currentAccount)
     updateBalanceOthers(username, accounts[index].balance);
 }
 
-
 // Function to check the current account balance
-void checkBalance(const BankAccount & currentAccount) {
+void checkBalance(const BankAccount &currentAccount)
+{
     string user = currentAccount.username + ".txt";
     string line;
 
     cout << "Current balance: ";
 
-    ifstream check;
-    check.open(user);
-    while (getline(check, line))
+    ifstream rd;
+    rd.open(user, ios::in);
+    while (getline(rd, line))
         cout << line << endl;
 
-    check.close();
+    rd.close();
 }
 
 // Function to log out of the current account
-void logoutAccount(BankAccount & currentAccount) {
+void logoutAccount(BankAccount &currentAccount)
+{
     currentAccount = {
         "",
         "",
-        0
-    };
+        0};
 
     loggedIn = false;
     cout << "Logged out successfully!" << endl;
 }
 
-int main() {
-    vector < BankAccount > accounts = readAccounts();
+int main()
+{
+    vector<BankAccount> accounts = readAccounts();
     BankAccount currentAccount = {
         "",
         "",
-        0
-    };
+        0};
     int choice;
-    while (true) {
+    while (true)
+    {
         if (!loggedIn)
         {
             cout << "Welcome to the bank system" << endl;
@@ -262,21 +308,23 @@ int main() {
             cout << "Enter choice: ";
             cin >> choice;
 
-            system("CLS");
-            switch (choice) {
-                case 1:
-                    registerAccount(accounts);
-                    break;
-                case 2:
-                    loginAccount(accounts, currentAccount);
-                    break;
-                default:
+            system("cls");
+            switch (choice)
+            {
+            case 1:
+                registerAccount(accounts);
+                break;
+            case 2:
+                loginAccount(accounts, currentAccount);
+                break;
+            default:
                 cout << "Invalid choice" << endl;
             }
         }
 
         if (loggedIn)
         {
+            updateBalanceInFile(currentAccount.balance, currentAccount);
             cout << "1. Deposit balance" << endl;
             cout << "2. Withdraw balance" << endl;
             cout << "3. Transfer balance" << endl;
@@ -288,30 +336,28 @@ int main() {
 
             switch (choice)
             {
-                case 1:
-                    depositBalance(currentAccount);
-                    break;
-                case 2:
-                    withdrawBalance(currentAccount);
-                    break;
-                case 3:
-                    transferBalance(accounts, currentAccount);
-                    break;
-                case 4:
-                    checkBalance(currentAccount);
-                    break;
-                case 5:
-                    logoutAccount(currentAccount);
-                    break;
-                case 6:
-                    writeAccounts(accounts, currentAccount.balance, currentAccount.username);
-                    return 0;
-                default:
-                    cout << "Invalid choice" << endl;
+            case 1:
+                depositBalance(currentAccount);
+                break;
+            case 2:
+                withdrawBalance(currentAccount);
+                break;
+            case 3:
+                transferBalance(accounts, currentAccount);
+                break;
+            case 4:
+                checkBalance(currentAccount);
+                break;
+            case 5:
+                logoutAccount(currentAccount);
+                break;
+            case 6:
+                writeAccounts(accounts, currentAccount.balance, currentAccount.username);
+                return 0;
+            default:
+                cout << "Invalid choice" << endl;
             }
         }
-
-
     }
 
     return 0;
