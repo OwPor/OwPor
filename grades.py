@@ -40,7 +40,7 @@ async def handle_response(user_message, ctx):
         
         try:
           r = s.post('http://wmsu.edu.ph/mywmsu/config_connect.php', headers=headers, data=users[ctx.author.id], verify=False, timeout=10)
-        except TimeoutError:
+        except requests.exceptions.Timeout:
           await ctx.send('The site might be down. Please try again later.')
           return
         
