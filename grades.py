@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import discord
 from discord.ext import commands
 
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='.', intents=intents, case_insensitive=True)
 
 currentSession = None
