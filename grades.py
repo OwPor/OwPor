@@ -119,7 +119,6 @@ async def handle_response(user_message, ctx):
 
 
 async def p(ctx, txt):
-  print(txt)
   await ctx.send(f'```{txt}```')
   global all
   all = ''
