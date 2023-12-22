@@ -9,7 +9,6 @@ intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='.', intents=intents, case_insensitive=True)
 
 currentSession = None
-waiting = []
 users = {}
 
 async def handle_response(user_message, ctx):
