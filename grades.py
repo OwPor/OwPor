@@ -1,7 +1,5 @@
 import os
 import json
-from cryptography.fernet import Fernet
-from cryptography.fernet import InvalidToken
 import requests
 from bs4 import BeautifulSoup
 import discord
