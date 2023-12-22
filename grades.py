@@ -103,7 +103,6 @@ async def handle_response(user_message, ctx):
             cols = row.find_all('td')
             all += "\n" + '{:<15}{:<{desc_len}}{:<10}'.format(
                 cols[0].text, cols[1].text, cols[2].text, desc_len=longest_desc)
-          print()
 
         await p(ctx, all)
         print("Done")
