@@ -160,8 +160,6 @@ async def info(ctx):
 async def on_message(message):
   if message.author.bot:
     return
-  if message.author.id in waiting:
-    return
 
   temp = message.content.split()
   msg = temp[0].lower()
