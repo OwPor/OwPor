@@ -110,7 +110,7 @@ async def handle_response(user_message, ctx):
     del users[ctx.author.id]
       
   elif p_message == '.how':
-    await ctx.send('Send ```.start yourusername yourpassword``` to login, and to get your grades. Send ```.info``` to know more about us.')
+    await ctx.send('Send ```.start yourusername yourpassword``` to get your code by logging in, and to get your grades. Send ```.info``` to know more about us.')
   elif p_message == '.info':
     await ctx.send('This bot was made by Vince, with the help of Jethro. We are from CS2B (2023-2024).')
 
