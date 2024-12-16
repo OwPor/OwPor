@@ -5,7 +5,7 @@
 
 - 🌱 I’m currently learning **PHP.**
 
-- 📫 How to reach me **rayvincentconcepcion@gmail.com**
+- 📫 How to reach me **concepcionrayvincent@gmail.com**
 
 <h3 align="left">My Interests:</h3>
 
