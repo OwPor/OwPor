@@ -7,6 +7,17 @@
 
 - 📫 How to reach me **concepcionrayvincent@gmail.com**
 
+<h3 align="left">My Stats:</h3>
+<div style="text-align: left;">
+
+<img src="https://github-readme-stats.vercel.app/api?username=OwPor&show_icons=true&theme=radical" alt="OwPor's GitHub stats" />
+
+<img src="https://streak-stats.demolab.com/?user=OwPor" alt="GitHub Streak" />
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=OwPor" alt="Top Languages" />
+
+</div>
+
 <h3 align="left">My Interests:</h3>
 
 - **Software Development**: Bringing ideas to life through code
