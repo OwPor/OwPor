@@ -34,6 +34,7 @@
 
 ### Connect with me:
 [![](https://img.shields.io/badge/-LinkedIn-%23000000?style=flat-square)](https://linkedin.com/in/ray-vincent-concepcion)
+[![](https://img.shields.io/badge/-Facebook-%23000000?style=flat-square)](https://www.facebook.com/ray.vincent.ds.concepcion)
 
 ### Languages and Tools:
 
