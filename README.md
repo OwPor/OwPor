@@ -11,9 +11,9 @@
 <div style="text-align: left;">
 
 <img src="https://github-readme-stats.vercel.app/api?username=OwPor&show_icons=true&theme=radical" alt="OwPor's GitHub stats" />
-
+<br>
 <img src="https://streak-stats.demolab.com/?user=OwPor" alt="GitHub Streak" />
-
+<br>
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=OwPor" alt="Top Languages" />
 
 </div>
