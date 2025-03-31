@@ -1,3 +1,21 @@
+// Mobile menu toggle
+function setupMobileMenu() {
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+}
+
+// Initialize all functionality
+function init() {
+  setupMobileMenu();
+}
+
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', init);
+
 // Fetch GitHub projects
 async function fetchGitHubProjects() {
   try {
