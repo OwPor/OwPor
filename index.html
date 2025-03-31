@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ray Vincent DS. Concepcion | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased">
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-100 fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <span class="text-xl font-semibold text-primary-600">RV</span>
+        <div class="hidden md:flex space-x-8">
+          <a href="#about" class="text-gray-500 hover:text-primary-600 transition-colors">About</a>
+          <a href="#skills" class="text-gray-500 hover:text-primary-600 transition-colors">Skills</a>
+          <a href="#projects" class="text-gray-500 hover:text-primary-600 transition-colors">Projects</a>
+          <a href="#contact" class="text-gray-500 hover:text-primary-600 transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+        Hi, I'm <span class="text-primary-600">Ray Vincent DS. Concepcion</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        A 3rd-year Computer Science student passionate about software development and emerging technologies.
+      </p>
+      <div class="space-x-4">
+        <a href="#projects" class="inline-block px-6 py-3 bg-primary-600 text-white font-medium rounded-lg shadow-sm hover:bg-primary-700 transition-colors">
+          View My Work
+        </a>
+        <a href="#contact" class="inline-block px-6 py-3 border border-primary-600 text-primary-600 font-medium rounded-lg hover:bg-primary-50 transition-colors">
+          Contact Me
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">About Me</h2>
+        <div class="w-20 h-1 bg-primary-600 mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="flex justify-center">
+          <div class="h-72 w-72 rounded-full overflow-hidden border-4 border-primary-100 shadow-lg">
+            <img src="https://avatars.githubusercontent.com/u/63895912?v=4" class="h-full w-full object-cover" />
+          </div>
+        </div>
+        <div class="space-y-6 text-gray-600">
+          <p class="text-lg leading-relaxed">
+            I'm a dedicated Computer Science student currently in my third year, focusing on expanding my knowledge in software development and cutting-edge technologies.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <span class="text-primary-600 mr-3 mt-1">🔭</span>
+              <p>I'm currently working on my Software Engineering subject.</p>
+            </div>
+            <div class="flex items-start">
+              <span class="text-primary-600 mr-3 mt-1">🌱</span>
+              <p>Exploring the fast-evolving world of technology, diving into AI, and expanding my dev toolkit!</p>
+            </div>
+            <div class="flex items-start">
+              <span class="text-primary-600 mr-3 mt-1">📫</span>
+              <p>Reach me at <a href="mailto:concepcionrayvincent@gmail.com" class="text-primary-600 font-medium hover:underline">concepcionrayvincent@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Skills</h2>
+        <div class="w-20 h-1 bg-primary-600 mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="skills-container"></div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6" id="skills-list-container"></div>
+    </div>
+  </section>
+  
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Projects</h2>
+        <div class="w-20 h-1 bg-primary-600 mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container"></div>
+    </div>
+  </section>
+  
+  <!-- Interests Section -->
+  <section id="interests" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Professional Interests</h2>
+        <div class="w-20 h-1 bg-primary-600 mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="interests-container"></div>
+    </div>
+  </section>
+  
+  <!-- LinkedIn Posts Section -->
+  <section id="linkedin-posts" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">LinkedIn Posts</h2>
+        <div class="w-20 h-1 bg-primary-600 mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="linkedin-posts-container"></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Contact</h2>
+        <div class="w-20 h-1 bg-primary-600 mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div id="contact-container" class="space-y-6 text-gray-600">
+          <p class="text-lg">I'm always interested in hearing about new opportunities, collaborations, or just chatting about technology and software development.</p>
+          <div class="space-y-4">
+            <p><span class="font-medium text-gray-900">Email:</span> concepcionrayvincent@gmail.com</p>
+          </div>
+        </div>
+        <div>
+          <form class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+              <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+              <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+              <textarea 
+                id="message"
+                rows="4" 
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
+                style="resize: none;"
+              ></textarea>
+            </div>
+            <button type="submit" class="w-full bg-primary-600 text-white py-3 rounded-md hover:bg-primary-700 transition-colors font-medium">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="bg-white border-t py-8 text-center text-gray-500">
+    <div class="max-w-6xl mx-auto px-6">
+      <p>&copy; 2025 Ray Vincent DS. Concepcion. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
