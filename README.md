@@ -10,9 +10,13 @@
 ### My Stats:
 <div style="text-align: left;">
 
-<img src="https://github-readme-stats.vercel.app/api?username=OwPor&show_icons=true&theme=radical" alt="OwPor's GitHub stats" />
+![](http://github-profile-summary-cards.vercel.app/api/cards/stats?username=OwPor&theme=ocean_dark)
 <br>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=OwPor" alt="Top Languages" />
+![](http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=OwPor&theme=ocean_dark)
+<br>
+![](http://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=OwPor&theme=ocean_dark)
+<br>
+![](http://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=OwPor&theme=ocean_dark)
 
 </div>
 
