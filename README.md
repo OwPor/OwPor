@@ -10,9 +10,9 @@
 ### My Stats:
 <div style="text-align: left;">
 
-![](http://github-profile-summary-cards.vercel.app/api/cards/stats?username=OwPor&theme=ocean_dark)
-<br>
 ![](http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=OwPor&theme=ocean_dark)
+<br>
+![](http://github-profile-summary-cards.vercel.app/api/cards/stats?username=OwPor&theme=ocean_dark)
 <br>
 ![](http://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=OwPor&theme=ocean_dark)
 <br>
