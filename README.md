@@ -3,7 +3,7 @@
 
 - 🔭 I’m currently working on **my On-the-job training project.**
 
-- 🌱 I’m currently learning **PHP.**
+- 🌱 I’m currently learning **PHP and Tailwind.**
 
 - 📫 How to reach me **concepcionrayvincent@gmail.com**
 
