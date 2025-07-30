@@ -1,5 +1,5 @@
 <h1 align="center">Hi, I'm Vince!</h1>
-<h3 align="center">I'm a curious 3rd year Computer Science student, always eager to dive into the exciting world of technology.</h3>
+<h3 align="center">I'm a curious 4th year Computer Science student, always eager to dive into the exciting world of technology.</h3>
 
 - 🔭 I’m currently working on **my On-the-job training project.**
 
