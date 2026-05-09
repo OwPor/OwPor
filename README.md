@@ -1,9 +1,9 @@
 <h1 align="center">Hi, I'm Vince!</h1>
-<h3 align="center">I'm a curious 4th year Computer Science student, always eager to dive into the exciting world of technology.</h3>
+<h3 align="center">I'm a curious Computer Science fresh graduate (June 2026), always eager to dive into the exciting world of technology.</h3>
 
-- 🔭 I’m currently working on **my On-the-job training project.**
+- 🔭 I’m currently working on **my mobile app.**
 
-- 🌱 I’m currently learning **PHP and Tailwind CSS.**
+- 🌱 I’m currently learning **Mobile App Development and UI/UX**
 
 - 📫 How to reach me **concepcionrayvincent@gmail.com**
 
